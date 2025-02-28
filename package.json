@@ -1,0 +1,13 @@
+{
+  "name": "online-marketplace",
+  "version": "1.0.0",
+  "description": "Marketplace application using Modular Monolith Architecture.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Zin Myo Maung",
+  "license": "ISC",
+  "type": "commonjs"
+}
