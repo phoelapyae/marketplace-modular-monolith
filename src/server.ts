@@ -40,5 +40,6 @@ async function bootstrap() {
 }
 
 bootstrap().catch((error) => {
+    logger.error('Error starting server: ', error);
     process.exit(1);
 });

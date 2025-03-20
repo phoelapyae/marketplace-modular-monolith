@@ -1,14 +1,14 @@
-// migrations/20240228000007-create-carts.js
 'use strict';
 
+/** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  up: async (queryInterface, Sequelize) => {
+  async up (queryInterface, Sequelize) {
     await queryInterface.createTable('carts', {
       id: {
+        type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER
+        primaryKey: true
       },
       userId: {
         type: Sequelize.INTEGER,
@@ -19,19 +19,20 @@ module.exports = {
           key: 'id'
         },
         onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
+        onDelete: 'CASCADE'
       },
       createdAt: {
-        allowNull: false,
         type: Sequelize.DATE,
+        allowNull: false
       },
       updatedAt: {
-        allowNull: false,
         type: Sequelize.DATE,
+        allowNull: false
       }
     });
   },
-  down: async (queryInterface, Sequelize) => {
+
+  async down (queryInterface, Sequelize) {
     await queryInterface.dropTable('carts');
   }
 };

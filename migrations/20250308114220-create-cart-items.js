@@ -1,14 +1,14 @@
-// migrations/20240228000008-create-cart-items.js
 'use strict';
 
+/** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  up: async (queryInterface, Sequelize) => {
+  async up (queryInterface, Sequelize) {
     await queryInterface.createTable('cart_items', {
       id: {
+        type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER
+        primaryKey: true
       },
       cartId: {
         type: Sequelize.INTEGER,
@@ -18,7 +18,7 @@ module.exports = {
           key: 'id'
         },
         onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
+        onDelete: 'CASCADE'
       },
       productId: {
         type: Sequelize.INTEGER,
@@ -28,31 +28,24 @@ module.exports = {
           key: 'id'
         },
         onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
+        onDelete: 'CASCADE'
       },
       quantity: {
         type: Sequelize.INTEGER,
-        allowNull: false,
-        defaultValue: 1,
+        allowNull: false
       },
       createdAt: {
-        allowNull: false,
         type: Sequelize.DATE,
+        allowNull: false
       },
       updatedAt: {
-        allowNull: false,
         type: Sequelize.DATE,
+        allowNull: false
       }
     });
-    
-    // Add composite unique constraint
-    await queryInterface.addConstraint('cart_items', {
-      fields: ['cartId', 'productId'],
-      type: 'unique',
-      name: 'cart_product_unique'
-    });
   },
-  down: async (queryInterface, Sequelize) => {
+
+  async down (queryInterface, Sequelize) {
     await queryInterface.dropTable('cart_items');
   }
 };

@@ -1,11 +1,12 @@
-// migrations/20240228000009-seed-initial-data.js
 'use strict';
-const bcrypt = require('bcrypt');
 
+const bcrypt = require("bcrypt");
+
+/** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  up: async (queryInterface, Sequelize) => {
-    // Seed admin user
+  async up (queryInterface, Sequelize) {
     const hashedPassword = await bcrypt.hash('admin123', 10);
+
     await queryInterface.bulkInsert('users', [{
       firstName: 'Admin',
       lastName: 'User',
@@ -16,7 +17,6 @@ module.exports = {
       updatedAt: new Date()
     }], {});
 
-    // Seed categories
     await queryInterface.bulkInsert('categories', [
       {
         name: 'Electronics',
@@ -45,7 +45,7 @@ module.exports = {
     ], {});
   },
 
-  down: async (queryInterface, Sequelize) => {
+  async down (queryInterface, Sequelize) {
     await queryInterface.bulkDelete('categories', null, {});
     await queryInterface.bulkDelete('users', { email: 'admin@example.com' }, {});
   }

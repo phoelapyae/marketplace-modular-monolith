@@ -1,14 +1,14 @@
-// migrations/20240228000006-create-order-items.js
 'use strict';
 
+/** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  up: async (queryInterface, Sequelize) => {
+  async up (queryInterface, Sequelize) {
     await queryInterface.createTable('order_items', {
       id: {
+        type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER
+        primaryKey: true
       },
       orderId: {
         type: Sequelize.INTEGER,
@@ -18,7 +18,7 @@ module.exports = {
           key: 'id'
         },
         onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
+        onDelete: 'CASCADE'
       },
       productId: {
         type: Sequelize.INTEGER,
@@ -28,31 +28,32 @@ module.exports = {
           key: 'id'
         },
         onUpdate: 'CASCADE',
-        onDelete: 'RESTRICT',
+        onDelete: 'RESTRICT'
       },
       quantity: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: false
       },
       unitPrice: {
         type: Sequelize.DECIMAL(10, 2),
-        allowNull: false,
+        allowNull: false
       },
       totalPrice: {
         type: Sequelize.DECIMAL(10, 2),
-        allowNull: false,
+        allowNull: false
       },
       createdAt: {
-        allowNull: false,
         type: Sequelize.DATE,
+        allowNull: false
       },
       updatedAt: {
-        allowNull: false,
         type: Sequelize.DATE,
+        allowNull: false
       }
     });
   },
-  down: async (queryInterface, Sequelize) => {
+
+  async down (queryInterface, Sequelize) {
     await queryInterface.dropTable('order_items');
   }
 };

@@ -10,4 +10,5 @@ export const sequelize = new Sequelize({
   database: enviroment.dbName,
   logging: enviroment.nodeEnv === 'development',
   models: [__dirname + '/../**/*.model.ts'],
+  quoteIdentifiers: true, 
 });

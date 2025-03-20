@@ -1,35 +1,36 @@
-// migrations/20240228000002-create-categories.js
 'use strict';
 
+/** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  up: async (queryInterface, Sequelize) => {
+  async up (queryInterface, Sequelize) {
     await queryInterface.createTable('categories', {
       id: {
+        type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER
+        primaryKey: true
       },
       name: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true,
+        unique: true
       },
       description: {
         type: Sequelize.TEXT,
-        allowNull: true,
+        allowNull: true
       },
       createdAt: {
-        allowNull: false,
         type: Sequelize.DATE,
+        allowNull: false
       },
       updatedAt: {
-        allowNull: false,
         type: Sequelize.DATE,
+        allowNull: false
       }
     });
   },
-  down: async (queryInterface, Sequelize) => {
+
+  async down (queryInterface, Sequelize) {
     await queryInterface.dropTable('categories');
   }
 };

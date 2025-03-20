@@ -1,8 +1,8 @@
 'use strict';
 
+/** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  up: async (queryInterface, Sequelize) => {
-    // Add indexes for better query performance
+  async up (queryInterface, Sequelize) {
     await queryInterface.addIndex('products', ['sellerId']);
     await queryInterface.addIndex('products', ['name']);
     await queryInterface.addIndex('orders', ['userId']);
@@ -12,8 +12,7 @@ module.exports = {
     await queryInterface.addIndex('cart_items', ['cartId']);
   },
 
-  down: async (queryInterface, Sequelize) => {
-    // Remove indexes
+  async down (queryInterface, Sequelize) {
     await queryInterface.removeIndex('products', ['sellerId']);
     await queryInterface.removeIndex('products', ['name']);
     await queryInterface.removeIndex('orders', ['userId']);
