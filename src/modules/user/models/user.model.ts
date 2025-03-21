@@ -1,12 +1,11 @@
 import { Table, Model, Column, DataType, HasMany } from "sequelize-typescript";
-import { Order } from "../../order/models/order.model";
 
 @Table({
     tableName: 'users',
     timestamps: true
 })
 
-export class User extends Model {
+export default class User extends Model {
     @Column({
         type: DataType.STRING,
         allowNull: false
@@ -49,7 +48,4 @@ export class User extends Model {
         allowNull: true
     })
     phone?: string;
-
-    @HasMany(() => Order)
-    orders!: Order[]
 }

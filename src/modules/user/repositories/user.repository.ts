@@ -1,6 +1,6 @@
 import { CreateUserDto, UpdateUserDto } from "../dto/user.dto";
 import { UserRepositoryInterface } from "../interfaces/user.repository.interface";
-import { User } from "../models/user.model";
+import User from "../models/user.model";
 
 export class UserRepository implements UserRepositoryInterface {
     async findAll(): Promise<User[]> {
