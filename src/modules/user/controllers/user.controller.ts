@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { UserService } from "../services/user.service";
 import { CreateUserDto, UpdateUserDto } from "../dto/user.dto";
+import { handleSuccess } from "../../../common/resources/handler";
 
 export class UserController {
     userService: UserService;
@@ -12,7 +13,7 @@ export class UserController {
     getAllUsers = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const users = await this.userService.getAllUsers();
-            res.status(200).json(users);
+            handleSuccess(res, 200, 'Retrieved users list successfully', users);
         } catch (error) {
             next(error);
         }
@@ -22,7 +23,7 @@ export class UserController {
         try {
             const id = parseInt(req.params.id, 10);
             const user = await this.userService.getUserById(id);
-            res.status(200).json(user);
+            handleSuccess(res, 200, 'Retrieved user successfully.', user);
         } catch (error) {
             next(error);
         }
@@ -32,7 +33,7 @@ export class UserController {
         try {
             const userData: CreateUserDto = req.body;
             const newUser = await this.userService.createUser(userData);
-            res.status(201).json(newUser);
+            handleSuccess(res, 201, 'Created user successfully.', newUser);
         } catch (error) {
             next(error);
         }
@@ -43,7 +44,7 @@ export class UserController {
             const id = parseInt(req.params.id, 10);
             const userData = req.body;
             const updatedUser = await this.userService.updateUser(id, userData);
-            res.status(200).json(updatedUser);
+            handleSuccess(res, 200, 'Updated user successfully.', updatedUser);
         } catch (error) {
             next(error);
         }
@@ -53,7 +54,7 @@ export class UserController {
         try {
             const id = parseInt(req.params.id, 10);
             await this.userService.deleteUser(id);
-            res.status(204).send();
+            handleSuccess(res, 204, 'Deleted user successfully.', null);
         } catch (error) {
             next(error);
         }

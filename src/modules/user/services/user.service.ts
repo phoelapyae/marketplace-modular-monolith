@@ -92,8 +92,8 @@ export class UserService {
       role: user.role,
     };
     
-    const token = jwt.sign(tokenPayload, '123456', {
-      expiresIn: 3000,
+    const token = jwt.sign(tokenPayload, enviroment.jwtSecret, {
+      expiresIn: 60000,
     });
     
     return {

@@ -8,6 +8,7 @@ import { sequelize } from './config/database';
 import { apiRoutes } from './api/routes';
 import { enviroment } from './config/enviroment';
 import { logger } from './common/utils/logger';
+import { errorMiddleware } from './common/middleware/error.middleware';
 
 async function bootstrap() {
     const app = express();
@@ -19,6 +20,9 @@ async function bootstrap() {
     app.use(express.urlencoded({ extended: true }));
 
     app.use('/api', apiRoutes);
+
+    // Error Handling
+    app.use(errorMiddleware);
 
     // Database connection 
     try {
