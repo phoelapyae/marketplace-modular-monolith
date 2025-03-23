@@ -6,15 +6,7 @@ export const handleSuccess = (
     message: string,
     data: any | null
 ) => {
-
-    let response = null;
-    
-    if (data) {
-        response = { code, message, data };
-    }
-    else {
-        response = { code, message };
-    }
+    let response = data ? { code, message, data } : { code, message };
 
     res.status(code).json(response);
 }

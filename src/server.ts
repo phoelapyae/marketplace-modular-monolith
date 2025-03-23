@@ -29,10 +29,10 @@ async function bootstrap() {
         await sequelize.authenticate();
         logger.info('Database connected successfully.');
 
-        if (enviroment.nodeEnv === 'development') {
-            await sequelize.sync({ alter: true });
-            logger.info('Database models synchronized.');
-        }
+        // if (enviroment.nodeEnv === 'development') {
+        //     await sequelize.sync({ alter: true });
+        //     logger.info('Database models synchronized.');
+        // }
     } catch (error) {
         logger.error('Unable to connect to the database ', error);
         process.exit(1);
