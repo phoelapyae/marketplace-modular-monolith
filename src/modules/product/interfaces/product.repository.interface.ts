@@ -10,6 +10,8 @@ export interface ProductRepositoryInterface {
 
     findByCategory(category: string): Promise<Product[]>;
 
+    findByShopId(shopId: number): Promise<Product[]>;
+
     create(productData: CreateProductDto): Promise<Product>;
 
     update(id: number, productData: UpdateProductDto): Promise<Product | null>;

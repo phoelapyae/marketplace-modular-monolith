@@ -3,7 +3,7 @@ import Product from "../../product/models/product.model";
 import Category from "./category.model";
 
 @Table({
-    tableName: 'product-categories',
+    tableName: 'product_categories',
     timestamps: true
 })
 export default class ProductCategory extends Model {

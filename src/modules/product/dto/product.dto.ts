@@ -5,7 +5,8 @@ export interface CreateProductDto {
     stock: number;
     imageUrl?: string;
     categoryIds: number[];
-    sellerId: number
+    sellerId: number;
+    shopId: number;
 }
 
 export interface UpdateProductDto {
@@ -14,7 +15,8 @@ export interface UpdateProductDto {
     price?: number;
     stock?: number;
     imageUrl?: string;
-    categoryIds?: number[]
+    categoryIds?: number[];
+    shopId?: number;
 }
 
 export interface ProductResponseDto {
@@ -29,7 +31,9 @@ export interface ProductResponseDto {
         name: string;
     }[];
     sellerId: number;
-    // sellerName: string;
+    sellerName: string;
+    shopId: number;
+    shopName: string;
     createdAt: Date,
     updatedAt: Date
 }
