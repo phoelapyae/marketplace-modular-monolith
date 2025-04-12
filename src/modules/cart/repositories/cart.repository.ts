@@ -37,11 +37,10 @@ export class CartRepository implements CartRepositoryInterface {
     }
 
     async updateItem(cartItemId: number, data: UpdateCartItemDto): Promise<CartItem|null> {
-        const cartItem = await CartItem.findOne({
-            where: {cartItemId}
-        });
+        const cartItem = await CartItem.findByPk(cartItemId);
 
-        if (!cartItem) {
+        if (!cartItem)
+        {
             return null;
         }
 
